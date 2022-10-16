@@ -25,6 +25,7 @@ function Register() {
           setemail("");
           setpassword("");
           setconfirmPassword("");
+          localStorage.setItem("jwt", res.data.token);
         } else {
           seterrorText(res.data.message);
         }
