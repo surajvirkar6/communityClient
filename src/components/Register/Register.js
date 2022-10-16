@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './Register.css';
 
 function Register() {
   const [name, setname] = useState("");
@@ -42,11 +43,10 @@ function Register() {
 
   return (
     <div>
-      <div>
-        <h3>Register</h3>
-        <p>{errorText}</p>
-        <div>
-          <form onSubmit={handleSubmit}>
+      <div className="register_container">
+        <h3 className="register_header">Register</h3>
+        <p className="error_text">{errorText}</p>
+          <form className="form" onSubmit={handleSubmit}>
             <input
               type="text"
               value={name}
@@ -77,9 +77,8 @@ function Register() {
               onChange={(e) => setconfirmPassword(e.target.value)}
               placeholder="Enter yout Confirm Password"
             />
-            <button>Register</button>
+            <button className="register_btn">Register</button>
           </form>
-        </div>
       </div>
     </div>
   );
