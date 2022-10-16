@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './Register.css';
+import axios from "axios";
 
 function Register() {
   const [name, setname] = useState("");
@@ -12,7 +13,22 @@ function Register() {
   const handleSubmit = e => {
     e.preventDefault();
     if(isValid()){
-      console.log("send form data");
+      axios.post('http://localhost:3500/api/v2/user/register', {
+        name: name,
+        mobile: mobile,
+        email: email,
+        password: password
+      }).then((res)=>{
+        if(res.data.status){
+          setname("");
+          setmobile("");
+          setemail("");
+          setpassword("");
+          setconfirmPassword("");
+        } else {
+          seterrorText(res.data.message);
+        }
+      })
     }
   }
 
