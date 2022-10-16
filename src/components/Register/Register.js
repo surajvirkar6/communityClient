@@ -10,7 +10,9 @@ function Register() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    isValid();
+    if(isValid()){
+      console.log("send form data");
+    }
   }
 
   function isValid(){
@@ -20,7 +22,7 @@ function Register() {
     } else if(!mobile || mobile.toString().length !== 10){
       seterrorText("Please enter 10 digit mobile number");
       return false;
-    } else if(!email){
+    } else if(!email || !email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)){
       seterrorText("Please enter valid email");
       return false;
     } else if(!password){
@@ -28,6 +30,9 @@ function Register() {
       return false;
     } else if(!confirmPassword){
       seterrorText("Please enter valid confirm password");
+      return false;
+    } else if(password !== confirmPassword){
+      seterrorText("Password doest not match.");
       return false;
     }
 
